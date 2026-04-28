@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz — Les Secrets de la Reconquête</title>
+  <meta name="description" content="Découvre comment faire revenir ton ex en 60 secondes. Test psychologique gratuit.">
+
+  <!-- Meta Pixel — Fischer (task 86ah4gq5p) -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1468933641577961');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1468933641577961&ev=PageView&noscript=1"/></noscript>
+
+  <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
+  <link rel="dns-prefetch" href="https://connect.facebook.net">
+
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    body{background:#fff;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;-webkit-font-smoothing:antialiased;line-height:1.55}
+    img{max-width:100%;height:auto;display:block}
+
+    .container{max-width:680px;margin:0 auto;padding:0 16px}
+
+    .brand-bar{background:#fff;padding:16px 16px;text-align:center;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10}
+    .brand-bar h1{font-size:18px;font-weight:800;color:#1a1a1a;letter-spacing:-.3px;margin:0}
+    .brand-bar h1 span{color:#d32f2f}
+
+    .progress-track{height:6px;background:#f3f3f3;border-radius:99px;overflow:hidden;margin:14px auto 24px;max-width:400px}
+    .progress-track span{display:block;height:100%;background:linear-gradient(90deg,#d32f2f,#b91c1c);transition:width .4s ease;border-radius:99px}
+
+    /* Step screens */
+    .step{display:none;padding:14px 16px 36px;animation:fadeIn .4s ease}
+    .step.is-active{display:block}
+
+    .step-title{font-size:22px;font-weight:800;color:#1a1a1a;line-height:1.3;margin:0 0 18px;text-align:center}
+    .step-title small{display:block;font-size:14px;font-weight:600;color:#d32f2f;margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
+    .step-question{font-size:21px;font-weight:800;color:#1a1a1a;line-height:1.35;margin:8px 0 22px;text-align:center}
+
+    .step-img{display:block;margin:18px auto 22px;max-width:340px;border-radius:14px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+    .step-img.lg{max-width:420px}
+
+    .bullets{margin:18px 0 26px;padding:0;list-style:none}
+    .bullets li{padding:10px 0;font-size:15px;color:#3a3a3a;display:flex;gap:10px;align-items:flex-start}
+    .bullets li::before{content:"✅";flex-shrink:0;font-size:18px}
+
+    .options{display:flex;flex-direction:column;gap:10px;max-width:520px;margin:0 auto}
+    .option{display:block;padding:16px 18px;background:#fff;border:2px solid #e5e7eb;border-radius:12px;font-size:15px;font-weight:600;color:#1a1a1a;text-align:left;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+    .option:hover,.option:active{border-color:#d32f2f;background:#fef2f2;color:#991b1b;transform:translateX(2px)}
+
+    .btn-cta{display:block;width:100%;max-width:440px;margin:24px auto 0;padding:18px 26px;background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff;text-decoration:none;font-size:17px;font-weight:800;text-align:center;border:none;border-radius:12px;letter-spacing:.3px;box-shadow:0 6px 20px rgba(34,197,94,.4);transition:transform .2s;text-transform:uppercase;cursor:pointer}
+    .btn-cta:hover{transform:translateY(-2px)}
+    .btn-cta.yellow{background:linear-gradient(180deg,#fbbf24,#f59e0b);color:#451a03;box-shadow:0 6px 20px rgba(251,191,36,.45)}
+
+    .alert-banner{padding:18px 16px;background:#fef2f2;border:2px solid #fca5a5;border-radius:12px;margin-bottom:22px;font-size:15px;color:#991b1b;text-align:center;font-weight:700;line-height:1.5}
+    .alert-banner strong{color:#7f1d1d}
+
+    .narrative{font-size:16px;color:#3a3a3a;line-height:1.7}
+    .narrative p{margin-bottom:14px}
+    .narrative strong{color:#1a1a1a}
+    .narrative em{font-style:italic;color:#555}
+
+    .small-note{font-size:12px;color:#888;text-align:center;margin-top:18px}
+
+    .site-footer{background:#1a1a1a;color:#aaa;padding:24px 20px;text-align:center;margin-top:40px}
+    .site-footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:12px;font-size:12px}
+    .site-footer .links a{color:#aaa;text-decoration:none}
+    .site-footer .copy{font-size:11px;color:#666}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:640px){
+      .step-title,.step-question{font-size:18px}
+      .step-img{max-width:280px}
+      .option{font-size:14px;padding:14px 16px}
+      .narrative{font-size:15px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="brand-bar">
+    <h1>Les Secrets de la <span>Reconquête</span></h1>
+    <div class="progress-track"><span id="progress-bar" style="width:12.5%"></span></div>
+  </header>
+
+  <main class="container">
+
+    <!-- ETAPA 1 — Landing -->
+    <section class="step is-active" data-step="1">
+      <h2 class="step-title">⬇️ Découvre comment faire revenir ton ex en 60 secondes</h2>
+      <img class="step-img" src="imgs/img1.png" alt="Message WhatsApp" loading="eager">
+      <p style="font-size:16px;color:#3a3a3a;margin-bottom:14px">Utilise ce message psychologique de <strong>trois mots</strong> et elle va venir te chercher.</p>
+      <p style="font-size:16px;color:#3a3a3a;margin-bottom:18px">Peu importe si tu l'as trompée, si elle t'a bloqué ou si elle est avec un autre mec en ce moment.</p>
+      <p style="font-size:15px;color:#555;margin-bottom:8px;text-align:center">Clique ici pour faire le test et débloquer ce message 👇🏻</p>
+      <button class="btn-cta yellow" onclick="next()">JE VEUX RECONQUÉRIR MON EX !</button>
+      <ul class="bullets" style="margin-top:24px">
+        <li>En plus de ce message, tu recevras un protocole de reconquête personnalisé.</li>
+        <li>Tu découvriras quelle est l'erreur qui fait perdre leur ex pour toujours à 93 % des hommes — et comment l'éviter.</li>
+        <li>Et tu découvriras aussi le raccourci sale pour la ramener dès les prochaines 48 heures.</li>
+      </ul>
+    </section>
+
+    <!-- ETAPA 2 -->
+    <section class="step" data-step="2">
+      <h2 class="step-title"><small>Étape 1 / 6</small>C'était quand, votre rupture ?</h2>
+      <div class="options">
+        <button class="option" onclick="next()">Il y a moins d'une semaine</button>
+        <button class="option" onclick="next()">Entre 1 et 4 semaines</button>
+        <button class="option" onclick="next()">Entre 1 et 3 mois</button>
+        <button class="option" onclick="next()">Plus de 3 mois</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 3 -->
+    <section class="step" data-step="3">
+      <h2 class="step-title"><small>Étape 2 / 6</small>Vous avez encore une forme de contact aujourd'hui ?</h2>
+      <div class="options">
+        <button class="option" onclick="next()">Oui, on se parle de temps en temps</button>
+        <button class="option" onclick="next()">Elle me parle, mais elle est froide et distante</button>
+        <button class="option" onclick="next()">Elle répond juste par politesse</button>
+        <button class="option" onclick="next()">Non, elle m'a bloqué partout</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 4 -->
+    <section class="step" data-step="4">
+      <h2 class="step-title"><small>Étape 3 / 6</small>Qu'est-ce qui te fait le plus mal depuis la rupture ?</h2>
+      <div class="options">
+        <button class="option" onclick="next()">La solitude qui pèse</button>
+        <button class="option" onclick="next()">La culpabilité et les remords</button>
+        <button class="option" onclick="next()">L'anxiété et la peur de l'avenir</button>
+        <button class="option" onclick="next()">Imaginer qu'elle est déjà avec un autre mec</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 5 -->
+    <section class="step" data-step="5">
+      <h2 class="step-title"><small>Étape 4 / 6</small>Si elle tombait vraiment amoureuse d'un autre mec, qu'est-ce qui t'arriverait ?</h2>
+      <div class="options">
+        <button class="option" onclick="next()">Je perdrais complètement pied</button>
+        <button class="option" onclick="next()">J'irais mal, mais j'essaierais d'avancer</button>
+        <button class="option" onclick="next()">J'essaierais de la reconquérir coûte que coûte</button>
+        <button class="option" onclick="next()">Je ferais semblant de m'en foutre, mais je mourrais à l'intérieur</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 6 -->
+    <section class="step" data-step="6">
+      <h2 class="step-title"><small>Étape 5 / 6</small>Combien de temps tu penses qu'il te reste avant qu'elle t'oublie pour de bon ?</h2>
+      <div class="options">
+        <button class="option" onclick="next()">Quelques jours — je sens que je suis déjà en train d'être remplacé</button>
+        <button class="option" onclick="next()">Quelques semaines — il est encore temps d'agir</button>
+        <button class="option" onclick="next()">Quelques mois — je pense qu'elle ressent encore quelque chose</button>
+        <button class="option" onclick="next()">Je sais pas, mais j'ai peur de le découvrir</button>
+      </div>
+    </section>
+
+    <!-- ETAPA 7 — Bridge narrativo (Alexandre Cormont) -->
+    <section class="step" data-step="7">
+      <div class="alert-banner">
+        ⚠️ <strong>ATTENTION !</strong> Ne quitte pas cette page !<br>
+        Tes chances de te remettre avec ton ex <strong>SONT DE SEULEMENT 12 %</strong> — c'est critique — mais en suivant ce protocole tu peux <strong>GARANTIR qu'elle revienne</strong> ⬇️
+      </div>
+
+      <div class="narrative">
+        <p>Salut, frérot !</p>
+        <p>Je m'appelle <strong>Alexandre Cormont</strong>. Et je sais exactement ce que tu traverses.</p>
+        <p>Je te dis ça parce que <strong>j'ai déjà été de l'autre côté.</strong></p>
+        <p>J'étais amoureux d'une femme... mais avec le temps, la relation est tombée dans la routine. Je travaillais trop, j'oubliais les petits détails qui la faisaient sourire... et sans m'en rendre compte, <strong>je blessais petit à petit la femme que j'aimais le plus.</strong></p>
+        <p>Jusqu'au jour où elle a rompu avec moi. Et à ce moment-là, j'avais l'impression que mon monde s'était écroulé.</p>
+        <p>C'est là qu'a commencé <strong>mon véritable enfer émotionnel</strong> :</p>
+        <p>J'appelais sans arrêt, j'envoyais message sur message, je restais en ligne tout le temps juste pour voir si elle avait vu mes messages...</p>
+      </div>
+
+      <button class="btn-cta yellow" onclick="next()">CONTINUER LE PLAN !</button>
+
+      <img class="step-img lg" src="imgs/img2.png" alt="Appels manqués" style="margin-top:28px" loading="lazy">
+
+      <div class="narrative">
+        <p>Le pire, c'était que quand elle postait une story, j'imaginais tout de suite qu'elle sortait avec un autre. Et ça <strong>me détruisait de l'intérieur</strong> et me laissait dans des crises et des crises d'angoisse.</p>
+        <p>Et le pire... c'était quand j'étais bloqué. Là, j'allais faire un faux profil pour voir ce qu'elle postait, je demandais à mes potes de m'envoyer ce qu'elle avait posté... Et devine quoi ?</p>
+        <p>Et voilà, j'étais là, <strong>en train de pleurer, triste, sans réussir à manger, sans réussir à travailler correctement</strong>...</p>
+        <p>Je vivais dans cette angoisse sans fin, en me demandant à chaque minute :</p>
+        <p><em>« Est-ce qu'elle ressent encore mon absence ? »<br>
+        « Est-ce qu'elle m'a déjà remplacé par un autre ? »<br>
+        « Est-ce que j'appelle ? Est-ce que j'envoie un message ? »</em></p>
+        <p>Et la vérité, c'est que... <strong>plus je lui courais après, plus elle s'éloignait.</strong></p>
+        <p>C'est seulement à ce moment-là que j'ai compris : <strong>le problème, c'était pas elle.</strong> Le vrai problème, c'était que je comprenais pas l'esprit féminin.</p>
+        <p>Je savais pas comment fonctionnait le désir d'une femme... et du coup, je faisais exactement l'opposé de ce qui aurait réveillé en elle l'envie de revenir.</p>
+        <p>C'est dans cette phase de douleur que j'ai compris de la pire manière possible une dure vérité :</p>
+        <p><strong>Plus tu es disponible pour une femme, plus elle s'éloigne...</strong></p>
+        <p>Mais au lieu d'accepter la défaite, <strong>j'ai décidé de transformer cette douleur en carburant.</strong></p>
+        <p>Je me suis plongé à fond dans les études, j'ai cherché des réponses, j'ai parlé avec beaucoup de spécialistes et j'ai découvert quelque chose qui a changé pas seulement ma vie, mais celle de milliers d'autres personnes avec qui j'ai déjà partagé ce secret caché...</p>
+        <p>Par contre, <strong>en seulement 3 étapes, tu peux faire en sorte que n'importe quelle femme te mange dans la main à nouveau et regrette d'avoir rompu avec toi</strong> (Même si t'as fait une très grosse connerie).</p>
+        <p>Au cours des dernières années, je me suis formé en Psychanalyse, et aujourd'hui je suis <strong>Psychanalyste Clinique spécialisé en relations amoureuses et comportement humain.</strong></p>
+      </div>
+
+      <img class="step-img lg" src="imgs/img3.png" alt="Alexandre Cormont — Psychanalyste" loading="lazy">
+
+      <div class="narrative">
+        <p>Depuis que j'ai commencé à partager du contenu sur les relations amoureuses, <strong>j'ai conquis presque 2 millions d'abonnés sur l'ensemble de mes réseaux sociaux.</strong></p>
+      </div>
+
+      <img class="step-img lg" src="imgs/img4.png" alt="Réseaux sociaux" loading="lazy">
+
+      <div class="narrative">
+        <p>Et cette femme qui m'avait quitté, après avoir appliqué exactement la même technique en 3 étapes que je vais te révéler dans ce plan, <strong>est aujourd'hui ma fiancée.</strong></p>
+      </div>
+
+      <img class="step-img lg" src="imgs/img5.png" alt="Fiancée" loading="lazy">
+
+      <div class="narrative">
+        <p>Et le mieux... j'ai fondé le <strong>Club des Déesses de Haute Valeur</strong>, une méthode exclusive qui apprend aux femmes à guérir de blessures profondes pour avoir des relations saines.</p>
+        <p><strong>Aujourd'hui le Club compte plus de 2 800 élèves.</strong></p>
+        <p>Mais ça m'a donné accès à <strong>TOUS les secrets les plus cachés de l'esprit féminin</strong>...</p>
+        <p>Des secrets que maintenant je vais te révéler <strong>pour que ton ex ressente à nouveau ton absence, regrette de t'avoir quitté et veuille te courir après dès cette semaine.</strong></p>
+      </div>
+
+      <img class="step-img lg" src="imgs/img6.png" alt="Couple heureux" loading="lazy">
+
+      <p style="font-size:16px;color:#1a1a1a;font-weight:700;text-align:center;margin:22px 0 8px">Touche le bouton ci-dessous pour Avancer avec le Plan ! 👇</p>
+      <button class="btn-cta yellow" onclick="next()">CONTINUER LE PLAN !</button>
+    </section>
+
+    <!-- ETAPA 8 — Pergunta final -->
+    <section class="step" data-step="8">
+      <h2 class="step-title"><small>Étape 6 / 6</small>S'il existait une vidéo courte de 60 secondes qui te montre le pas-à-pas exact pour faire revenir ton ex dans les 48 prochaines heures, est-ce que tu t'engagerais à regarder cette vidéo jusqu'à la fin ?</h2>
+      <div class="options">
+        <button class="option" onclick="finish()">Oui, je veux la regarder maintenant</button>
+        <button class="option" onclick="finish()">Oui, je veux la regarder et l'appliquer aujourd'hui</button>
+        <button class="option" onclick="finish()">Oui, mais je veux comprendre chaque détail</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="links">
+      <a href="/privacy-policy/">Politique de confidentialité</a>
+      <a href="/terms-of-use/">Conditions d'utilisation</a>
+      <a href="/contact/">Contact</a>
+      <a href="/imprint/">Mentions légales</a>
+    </div>
+    <div class="copy">&copy; 2026 Les Secrets de la Reconquête. Tous droits réservés.</div>
+  </footer>
+
+  <script>
+  (function(){
+    var steps = document.querySelectorAll('.step');
+    var bar = document.getElementById('progress-bar');
+    var current = 0;
+
+    function show(i){
+      steps[current].classList.remove('is-active');
+      current = i;
+      steps[current].classList.add('is-active');
+      bar.style.width = ((current+1)/steps.length*100) + '%';
+      window.scrollTo({top:0, behavior:'smooth'});
+      // Track event Meta Pixel
+      if(window.fbq){ fbq('trackCustom', 'QuizStep', {step: current+1}); }
+    }
+    window.next = function(){ if(current < steps.length-1) show(current+1); };
+    window.finish = function(){
+      if(window.fbq){ fbq('trackCustom', 'QuizComplete'); }
+      window.location.href = '/vsl/';
+    };
+  })();
+  </script>
+
+  <!-- UTMify Pixel — Fischer (task 86ah4gq5p) -->
+  <script>
+    window.pixelId = "69efdeae396a8de72199ce10";
+    var a = document.createElement("script");
+    a.setAttribute("async","");
+    a.setAttribute("defer","");
+    a.setAttribute("src","https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+
+</body>
+</html>
