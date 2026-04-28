@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Les Secrets Masculins</title>
-  <meta name="description" content="Une présentation exclusive pour les hommes qui veulent reconquérir l'amour de leur vie.">
+  <title>Les Secrets de la Reconquête</title>
+  <meta name="description" content="Le protocole numérique pour reprendre contact avec ton ex de manière calme, claire et stratégique. 90 jours de garantie.">
 
-  <!-- Meta Pixel — fornecido pelo Fischer (task 86ah4gq5p) -->
+  <!-- Meta Pixel — Fischer (task 86ah4gq5p) -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -36,53 +36,275 @@
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    body{background:#000;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#fff;-webkit-font-smoothing:antialiased}
+    body{background:#fff;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;-webkit-font-smoothing:antialiased;line-height:1.55}
 
-    .date-banner{background:#fff;padding:18px 16px;text-align:center;border-bottom:1px solid #e5e5e5}
-    .date-banner p{font-size:18px;font-weight:700;color:#000;letter-spacing:.2px;line-height:1.4;margin:0}
-    .date-banner .date-highlight{color:#d32f2f;font-weight:800}
+    .container{max-width:780px;margin:0 auto;padding:0 16px}
 
-    .video-section{background:#000;padding:40px 16px;display:flex;justify-content:center}
+    /* Header brand */
+    .brand-bar{background:#fff;padding:18px 16px;text-align:center;border-bottom:1px solid #eee}
+    .brand-bar h1{font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:-.3px;margin:0}
+    .brand-bar h1 span{color:#d32f2f}
+
+    /* Video */
+    .video-section{padding:32px 16px;display:flex;justify-content:center;background:#fff}
     .video-container{width:100%;max-width:720px}
     .video-container vturb-smartplayer{display:block;margin:0 auto;width:100%}
 
-    .disclaimer{background:#0a0a0a;padding:24px 20px;text-align:center;border-top:1px solid #1a1a1a}
-    .disclaimer p{max-width:1100px;margin:0 auto;font-size:12px;color:#888;line-height:1.6}
+    /* Pós-pitch reveal — começa hidden */
+    .post-pitch{display:none;padding:8px 16px 40px}
+    .post-pitch.is-revealed{display:block;animation:fadeIn .5s ease}
 
-    .site-footer{background:#050505;padding:28px 20px;text-align:center;border-top:1px solid #1a1a1a}
-    .site-footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-bottom:14px;font-size:13px}
-    .site-footer .links a{color:#aaa;text-decoration:none;transition:color .2s}
+    /* Cronômetro */
+    .countdown{max-width:420px;margin:0 auto 18px;text-align:center;padding:18px;border:2px solid #d32f2f;border-radius:12px;background:#fef2f2}
+    .countdown-label{font-size:13px;font-weight:700;color:#d32f2f;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+    .countdown-time{font-size:38px;font-weight:900;color:#d32f2f;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+
+    /* Old price */
+    .old-price{text-align:center;color:#d32f2f;font-size:28px;font-weight:800;margin-bottom:24px;text-decoration:line-through;text-decoration-thickness:3px}
+
+    /* Section title */
+    .section-title{font-size:22px;font-weight:800;text-align:center;color:#1a1a1a;margin:0 0 22px;line-height:1.3;padding:0 8px}
+
+    /* Progress list */
+    .progress-list{max-width:680px;margin:0 auto 32px}
+    .progress-item{margin-bottom:18px;background:#fefce8;border-radius:10px;padding:14px 16px;border:1px solid #fde68a;display:none}
+    .progress-item.is-active{display:block;animation:fadeIn .35s ease}
+    .progress-text{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:10px;line-height:1.4}
+    .progress-bar{height:10px;background:#fde68a;border-radius:99px;overflow:hidden;position:relative}
+    .progress-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:99px;transition:width 4.5s linear}
+    .progress-percent{font-size:13px;font-weight:700;color:#16a34a;text-align:right;margin-top:6px;font-variant-numeric:tabular-nums}
+
+    /* Final reveal — após 9ª barra */
+    .final-reveal{display:none;max-width:680px;margin:0 auto;padding-top:18px;border-top:2px solid #f3f3f3}
+    .final-reveal.is-shown{display:block;animation:fadeIn .5s ease}
+
+    /* Garantia */
+    .guarantee{padding:24px 18px;background:#fdf9f0;border:2px solid #f1d99a;border-radius:14px;margin-bottom:28px}
+    .guarantee h2{font-size:20px;font-weight:800;color:#1a1a1a;margin:0 0 14px;text-align:center}
+    .guarantee p{font-size:15px;color:#3a3a3a;margin-bottom:12px}
+    .guarantee p:last-child{margin-bottom:0}
+    .guarantee strong{color:#1a1a1a}
+
+    /* Bullets */
+    .choice-bullets{margin:28px 0 12px;font-size:17px;font-weight:700}
+    .choice-bullets p{padding:14px 16px;border-radius:10px;margin-bottom:10px}
+    .choice-bullets .stuck{background:#fef2f2;color:#991b1b;border-left:4px solid #d32f2f}
+    .choice-bullets .act{background:#f0fdf4;color:#166534;border-left:4px solid #16a34a}
+
+    .lead-cta{font-size:16px;color:#3a3a3a;margin:18px 0;text-align:center}
+
+    /* CTA verde */
+    .btn-cart{display:block;max-width:480px;margin:18px auto;padding:18px 28px;background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff;text-decoration:none;font-size:18px;font-weight:800;text-align:center;border-radius:12px;letter-spacing:.3px;box-shadow:0 6px 20px rgba(34,197,94,.4);transition:transform .2s,box-shadow .2s;text-transform:uppercase}
+    .btn-cart:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(34,197,94,.5)}
+
+    /* Cadeaux */
+    .cadeaux-title{text-align:center;font-size:20px;font-weight:800;font-style:italic;margin:36px 0 22px;color:#1a1a1a;line-height:1.4}
+    .cadeaux-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:28px}
+    .cadeau{display:flex;align-items:center;gap:14px;padding:18px 16px;background:linear-gradient(135deg,#fef9c3 0%,#fef3c7 100%);border:2px solid #fde68a;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);font-style:italic}
+    .cadeau-icon{font-size:36px;flex-shrink:0;width:60px;height:60px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+    .cadeau-text{flex:1;font-size:15px;font-weight:700;color:#1a1a1a;line-height:1.4}
+    .cadeau-text small{display:block;font-size:12px;color:#666;font-weight:600;margin-top:4px;font-style:normal}
+
+    /* Texto final */
+    .final-text{padding:20px 16px;background:#f9fafb;border-radius:12px;margin:24px 0}
+    .final-text p{font-size:15px;color:#3a3a3a;margin-bottom:12px}
+    .final-text p:last-child{margin-bottom:0}
+    .final-text .opt{padding:12px 14px;border-radius:8px;font-weight:600;margin-bottom:10px}
+    .final-text .opt-bad{background:#fef2f2;color:#991b1b}
+    .final-text .opt-good{background:#f0fdf4;color:#166534}
+    .final-text strong{color:#1a1a1a;font-weight:800}
+
+    /* Disclaimer */
+    .disclaimer{padding:24px 20px;text-align:center;border-top:1px solid #eee;background:#fafafa}
+    .disclaimer p{max-width:1100px;margin:0 auto;font-size:12px;color:#666;line-height:1.6}
+
+    /* Footer */
+    .site-footer{background:#1a1a1a;color:#aaa;padding:28px 20px;text-align:center}
+    .site-footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:14px;font-size:13px}
+    .site-footer .links a{color:#aaa;text-decoration:none}
     .site-footer .links a:hover{color:#fff;text-decoration:underline}
     .site-footer .copy{font-size:12px;color:#666}
 
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
     @media(max-width:640px){
-      .date-banner{padding:14px 12px}
-      .date-banner p{font-size:14px}
-      .video-section{padding:24px 12px}
-      .disclaimer{padding:20px 16px}
-      .disclaimer p{font-size:11px}
-      .site-footer{padding:22px 16px}
-      .site-footer .links{gap:12px;font-size:12px}
+      .video-section{padding:18px 12px}
+      .post-pitch{padding:8px 12px 30px}
+      .countdown-time{font-size:32px}
+      .old-price{font-size:24px}
+      .section-title{font-size:18px}
+      .progress-text{font-size:14px}
+      .guarantee{padding:18px 14px}
+      .guarantee h2{font-size:18px}
+      .btn-cart{font-size:16px;padding:16px 20px}
+      .cadeau{padding:14px 12px;gap:10px}
+      .cadeau-icon{font-size:28px;width:48px;height:48px}
+      .cadeau-text{font-size:14px}
+      .cadeaux-title{font-size:17px}
     }
   </style>
 </head>
 <body>
 
-  <div class="date-banner">
-    <p>Aujourd'hui, <span class="date-highlight" id="current-date">—</span>, est le dernier jour pour voir cette vidéo</p>
+  <!-- Brand bar -->
+  <div class="brand-bar">
+    <h1>Les Secrets de la <span>Reconquête</span></h1>
   </div>
 
+  <!-- Video -->
   <div class="video-section">
     <div class="video-container">
-      <vturb-smartplayer id="ab-PLACEHOLDER" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      <vturb-smartplayer id="ab-PLACEHOLDER" style="display:block;margin:0 auto;width:100%"></vturb-smartplayer>
       <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/00c3b583-8874-4e64-a32e-65f6dd9ba521/ab-test/PLACEHOLDER/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
   </div>
 
+  <!-- Pós-pitch (escondido até VTurb disparar CTA) -->
+  <section class="post-pitch" id="post-pitch" aria-hidden="true">
+
+    <!-- Cronômetro 15min -->
+    <div class="countdown">
+      <div class="countdown-label">⏰ Offre limitée</div>
+      <div class="countdown-time" id="countdown-time">15:00</div>
+    </div>
+
+    <!-- Old price -->
+    <div class="old-price">€200</div>
+
+    <!-- Title -->
+    <h2 class="section-title">Patiente, regarde la vidéo pendant qu'on crée ton Protocole de Reconquête Personnalisé...</h2>
+
+    <!-- Progress list — animadas sequencialmente -->
+    <div class="progress-list" id="progress-list">
+      <div class="progress-item">
+        <div class="progress-text">🔄 Génération du message exact qui perce n'importe quel blocage et réveille le manque même dans le silence</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Création du déclencheur caché qui la fait douter de sa décision de te quitter</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Génération du plan de rapprochement qui transforme sa culpabilité en force à ton avantage</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Création du scénario émotionnel qui transforme la froideur en curiosité et la curiosité en désir</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Génération du texte parfait pour inverser le mépris et la faire courir après ta réponse</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Création de l'effet domino qui détruit sa nouvelle relation et ramène l'attention sur toi</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Génération de la séquence interdite de messages qui rouvre la conversation sans avoir l'air collant</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Création du retournement psychologique qui change complètement sa façon de te voir</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-text">🔄 Génération du Protocole Personnalisé !</div>
+        <div class="progress-bar"><span></span></div>
+        <div class="progress-percent">0%</div>
+      </div>
+    </div>
+
+    <!-- Final reveal — após última progress bar -->
+    <div class="final-reveal" id="final-reveal">
+
+      <h2 class="section-title">En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois une GARANTIE BÉTON de 90 jours + 5 CADEAUX ! ⬇️</h2>
+
+      <div class="guarantee">
+        <p>Je sais exactement ce qui te passe par la tête là maintenant.</p>
+        <p>« Et si j'achète et qu'il se passe rien ? »</p>
+        <p>« Et si elle revient pas ? »</p>
+        <p>« Et si c'est juste une promesse vide de plus sur internet ? »</p>
+        <p>Et c'est exactement pour ça que j'ai décidé de faire un truc qu'aucun autre expert en relations amoureuses a le cran de faire : <strong>te donner une garantie de 90 jours</strong>, sans pièges et sans petits caractères.</p>
+        <p>Ça marche comme ça :</p>
+        <p><strong>Tu rejoins Les Secrets de la Reconquête aujourd'hui...</strong></p>
+        <p>Tu appliques ce que je t'enseigne, t'envoies les messages, tu suis le protocole étape par étape...</p>
+        <p>Et si dans les 90 jours ton ex revient pas vers toi, je te rembourse chaque centime de ton investissement.</p>
+        <p>Sans questions, sans paperasse, sans petits caractères. Si ça marche pas pour toi, tu paies rien. Aussi simple que ça.</p>
+        <p>Je fais ça parce que je sais ce que ma méthode vaut. Et parce que j'ai déjà vu cette même méthode transformer des hommes brisés en mecs qui ont reconquis le respect, le désir et l'amour de la femme qu'ils aimaient le plus.</p>
+        <p>Donc, t'investis pas dans « un cours de plus ». <strong>Tu investis dans une seconde chance de réécrire l'histoire de ta vie amoureuse.</strong></p>
+      </div>
+
+      <div class="choice-bullets">
+        <p class="stuck">💔 Rester coincé dans les 12 % et la perdre pour toujours.</p>
+        <p class="act">❤️ Ou agir maintenant et utiliser le même protocole qui a déjà reconnecté plus de 30 000 couples.</p>
+      </div>
+
+      <p class="lead-cta">Clique ici et sécurise ton accès aux Secrets de la Reconquête avec <strong>90 jours de garantie</strong> 👇🏻</p>
+
+      <a class="btn-cart" href="#" id="cta-1">Clique ici pour RECONQUÉRIR ton ex !</a>
+
+      <div class="cadeaux-title"><em>En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois 6 CADEAUX ! ⬇️</em></div>
+
+      <div class="cadeaux-grid">
+        <div class="cadeau">
+          <div class="cadeau-icon">🏝️</div>
+          <div class="cadeau-text">CADEAU #1 — VOYAGE EN COUPLE AUX MALDIVES<small>uniquement pour les 10 premiers</small></div>
+        </div>
+        <div class="cadeau">
+          <div class="cadeau-icon">🏔️</div>
+          <div class="cadeau-text">CADEAU #2 — VOYAGE EN COUPLE DANS LES ALPES SUISSES<small>uniquement pour les 20 premiers</small></div>
+        </div>
+        <div class="cadeau">
+          <div class="cadeau-icon">📞</div>
+          <div class="cadeau-text">CADEAU #3 — CONSULTATION INDIVIDUELLE AVEC MOI EN VISIO<small>uniquement pour les 30 premiers</small></div>
+        </div>
+        <div class="cadeau">
+          <div class="cadeau-icon">🛡️</div>
+          <div class="cadeau-text">CADEAU #4 — BOUCLIER ÉMOTIONNEL<small>à 147 € — aujourd'hui, gratuit</small></div>
+        </div>
+        <div class="cadeau">
+          <div class="cadeau-icon">💬</div>
+          <div class="cadeau-text">CADEAU #5 — BANQUE DE MESSAGES MAGNÉTIQUES<small>à 97 € — aujourd'hui, gratuit</small></div>
+        </div>
+        <div class="cadeau">
+          <div class="cadeau-icon">🤝</div>
+          <div class="cadeau-text">CADEAU #6 — GUIDE DU PREMIER FACE-À-FACE<small>à 127 € — aujourd'hui, gratuit</small></div>
+        </div>
+      </div>
+
+      <a class="btn-cart" href="#" id="cta-2">Clique ici pour RECONQUÉRIR ton ex !</a>
+
+      <div class="final-text">
+        <p>Et écoute... t'es pas ici par hasard.</p>
+        <p>T'es ici parce que tu sais que ton ex te voit plus comme avant.</p>
+        <p>Et maintenant t'as plus que deux options :</p>
+        <p class="opt opt-bad">❌ Continuer à envoyer des messages au hasard, et la regarder courir dans les bras d'un autre.</p>
+        <p class="opt opt-good">✅ Ou appliquer les messages chirurgicaux du protocole, ceux qui la font vouloir s'engager à nouveau.</p>
+        <p>Les Secrets de la Reconquête te livrent exactement :</p>
+        <p><strong>👉 Quoi dire, quand le dire, et comment garder son esprit accro à toi.</strong></p>
+        <p>Clique sur le bouton ci-dessous. Débloque ton accès maintenant. Et reprends ta place — au centre de ses pensées.</p>
+      </div>
+
+      <a class="btn-cart" href="#" id="cta-3">Clique ici pour RECONQUÉRIR ton ex !</a>
+
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
   <div class="disclaimer">
     <p>This site is not affiliated with, endorsed by, or sponsored by Facebook or Google. Facebook and Google are registered trademarks of their respective owners. All testimonials are from real people, but results may vary.</p>
   </div>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="links">
       <a href="/privacy-policy/">Politique de confidentialité</a>
@@ -91,22 +313,116 @@
       <a href="/contact/">Contact</a>
       <a href="/imprint/">Mentions légales</a>
     </div>
-    <div class="copy">&copy; 2026 Les Secrets Masculins. Tous droits réservés.</div>
+    <div class="copy">&copy; 2026 Les Secrets de la Reconquête. Tous droits réservés.</div>
   </footer>
 
-  <!-- Date Script (formato francês jj/mm/aaaa) -->
+  <!-- Pre/Post-pitch reveal logic -->
   <script>
-    (function(){
-      var n=new Date();
-      var dd=n.getDate().toString().padStart(2,'0');
-      var mm=(n.getMonth()+1).toString().padStart(2,'0');
-      var yyyy=n.getFullYear();
-      var el=document.getElementById('current-date');
-      if(el) el.textContent=dd+'/'+mm+'/'+yyyy;
-    })();
+  (function(){
+    var revealed = false;
+    var PITCH_FALLBACK_MS = 30 * 60 * 1000; // 30min — TODO ajustar quando souber tempo do pitch
+
+    var postPitch = document.getElementById('post-pitch');
+    var finalReveal = document.getElementById('final-reveal');
+    var progressItems = document.querySelectorAll('.progress-item');
+    var countdownEl = document.getElementById('countdown-time');
+
+    // Cronômetro 15min — começa quando reveal dispara
+    function startCountdown(totalSec){
+      var sec = totalSec;
+      function tick(){
+        var m = Math.floor(sec/60);
+        var s = sec%60;
+        countdownEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+        if(sec<=0) return;
+        sec--;
+        setTimeout(tick, 1000);
+      }
+      tick();
+    }
+
+    // Anima progress bars sequencialmente — cada uma 5s, depois revela próxima
+    function startProgressBars(){
+      var i = 0;
+      function next(){
+        if(i >= progressItems.length){
+          finalReveal.classList.add('is-shown');
+          return;
+        }
+        var item = progressItems[i];
+        item.classList.add('is-active');
+        var bar = item.querySelector('.progress-bar span');
+        var pct = item.querySelector('.progress-percent');
+        // Forçar reflow antes da transição
+        requestAnimationFrame(function(){
+          bar.style.width = '100%';
+        });
+        // Animar texto do percent
+        var startTime = Date.now();
+        var DURATION = 4500;
+        function animatePct(){
+          var elapsed = Date.now() - startTime;
+          var p = Math.min(100, Math.round(elapsed/DURATION*100));
+          pct.textContent = p + '%';
+          if(p < 100){
+            requestAnimationFrame(animatePct);
+          } else {
+            i++;
+            setTimeout(next, 350);
+          }
+        }
+        animatePct();
+      }
+      next();
+    }
+
+    function reveal(){
+      if(revealed) return;
+      revealed = true;
+      postPitch.classList.add('is-revealed');
+      postPitch.setAttribute('aria-hidden','false');
+      startCountdown(15*60);
+      startProgressBars();
+    }
+
+    // Mecanismo 1: setTimeout fallback
+    setTimeout(reveal, PITCH_FALLBACK_MS);
+
+    // Mecanismo 2: VTurb event listener (vários nomes possíveis)
+    ['vturb:cta','vturb:offer','vturb:button','vturb:reveal','smartplayer:cta','smartplayer:button','sp:cta','sp:button'].forEach(function(ev){
+      window.addEventListener(ev, reveal, {once:true});
+    });
+
+    // Mecanismo 3: MutationObserver no shadow DOM (procura botão CTA do VTurb)
+    function observeShadow(){
+      var player = document.querySelector('vturb-smartplayer');
+      if(!player || !player.shadowRoot) return false;
+      var obs = new MutationObserver(function(){
+        var btn = player.shadowRoot.querySelector('[class*="cta"],[class*="button"],[class*="offer"]');
+        if(btn) reveal();
+      });
+      obs.observe(player.shadowRoot, {childList:true, subtree:true});
+      return true;
+    }
+    var shadowTries = 0;
+    var shadowInt = setInterval(function(){
+      if(observeShadow() || ++shadowTries > 60) clearInterval(shadowInt);
+    }, 500);
+
+    // Mecanismo 4: polling DOM por classes/ids comuns
+    var domTries = 0;
+    var domInt = setInterval(function(){
+      if(revealed){ clearInterval(domInt); return; }
+      var hit = document.querySelector('.smartplayer-button-wrapper,.sp-button-cta,[class*="offer-button"]');
+      if(hit) reveal();
+      if(++domTries > 1200) clearInterval(domInt); // ~30min
+    }, 1500);
+
+    // Manual trigger pra testar:  window.dispatchEvent(new Event('vturb:cta'))
+  })();
   </script>
 
-  <!-- Pixel UTMify — fornecido pelo Fischer (task 86ah4gq5p) -->
+  <!-- UTMify Pixel — Fischer (task 86ah4gq5p) -->
   <script>
     window.pixelId = "69efdeae396a8de72199ce10";
     var a = document.createElement("script");
