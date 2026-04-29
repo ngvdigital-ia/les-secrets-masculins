@@ -21,11 +21,9 @@
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1468933641577961&ev=PageView&noscript=1"/></noscript>
 
-  <!-- VTurb Preload (TODO: trocar PLACEHOLDER pelo ID quando VSL ficar pronta) -->
   <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
   <link rel="preload" href="https://scripts.converteai.net/00c3b583-8874-4e64-a32e-65f6dd9ba521/ab-test/PLACEHOLDER/player.js" as="script" fetchpriority="high">
   <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-
   <link rel="dns-prefetch" href="https://cdn.converteai.net">
   <link rel="dns-prefetch" href="https://scripts.converteai.net">
   <link rel="dns-prefetch" href="https://images.converteai.net">
@@ -37,126 +35,146 @@
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     body{background:#fff;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#1a1a1a;-webkit-font-smoothing:antialiased;line-height:1.55}
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
 
-    .container{max-width:780px;margin:0 auto;padding:0 16px}
+    .container{max-width:760px;margin:0 auto;padding:0 16px}
 
-    /* Header brand */
-    .brand-bar{background:#fff;padding:18px 16px;text-align:center;border-bottom:1px solid #eee}
-    .brand-bar h1{font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:-.3px;margin:0}
+    /* ── Brand bar ── */
+    .brand-bar{background:#fff;padding:16px;text-align:center;border-bottom:2px solid #f1f1f1}
+    .brand-bar h1{font-size:19px;font-weight:800;letter-spacing:-.2px}
     .brand-bar h1 span{color:#d32f2f}
 
-    /* Video */
-    .video-section{padding:32px 16px;display:flex;justify-content:center;background:#fff}
+    /* ── Video ── */
+    .video-section{padding:24px 16px 20px;background:#fff;display:flex;justify-content:center}
     .video-container{width:100%;max-width:720px}
     .video-container vturb-smartplayer{display:block;margin:0 auto;width:100%}
 
-    /* Pós-pitch reveal — começa hidden */
-    .post-pitch{display:none;padding:8px 16px 40px}
-    .post-pitch.is-revealed{display:block;animation:fadeIn .5s ease}
+    /* ── Post-pitch ── */
+    .post-pitch{display:none}
+    .post-pitch.is-revealed{display:block;animation:fadeUp .5s ease}
 
-    /* Cronômetro */
-    .countdown{max-width:420px;margin:0 auto 18px;text-align:center;padding:18px;border:2px solid #d32f2f;border-radius:12px;background:#fef2f2}
-    .countdown-label{font-size:13px;font-weight:700;color:#d32f2f;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-    .countdown-time{font-size:38px;font-weight:900;color:#d32f2f;font-variant-numeric:tabular-nums;letter-spacing:-1px}
+    /* ── Countdown ── */
+    .countdown-wrap{padding:0 16px;margin-bottom:14px}
+    .countdown-box{max-width:400px;margin:0 auto;border:2px solid #d32f2f;border-radius:16px;background:#fff5f5;padding:16px 20px;text-align:center}
+    .countdown-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#d32f2f;margin-bottom:6px}
+    .countdown-digits{font-size:48px;font-weight:900;color:#d32f2f;font-variant-numeric:tabular-nums;letter-spacing:-2px;line-height:1}
 
-    /* Old price */
-    .old-price{text-align:center;color:#d32f2f;font-size:28px;font-weight:800;margin-bottom:24px;text-decoration:line-through;text-decoration-thickness:3px}
+    /* ── Old price ── */
+    .old-price{text-align:center;margin:10px 0 22px;font-size:28px;font-weight:800;color:#d32f2f;text-decoration:line-through;text-decoration-thickness:3px}
 
-    /* Section title */
-    .section-title{font-size:22px;font-weight:800;text-align:center;color:#1a1a1a;margin:0 0 22px;line-height:1.3;padding:0 8px}
+    /* ── Section title ── */
+    .section-title{font-size:20px;font-weight:800;text-align:center;color:#1a1a1a;line-height:1.35;padding:0 8px;margin:0 0 26px}
 
-    /* Progress list */
+    /* ── Progress list ── */
     .progress-list{max-width:680px;margin:0 auto 32px}
-    .progress-item{margin-bottom:18px;background:#fefce8;border-radius:10px;padding:14px 16px;border:1px solid #fde68a;display:none}
-    .progress-item.is-active{display:block;animation:fadeIn .35s ease}
-    .progress-text{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:10px;line-height:1.4}
-    .progress-bar{height:10px;background:#fde68a;border-radius:99px;overflow:hidden;position:relative}
-    .progress-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,#22c55e,#16a34a);border-radius:99px;transition:width 4.5s linear}
-    .progress-percent{font-size:13px;font-weight:700;color:#16a34a;text-align:right;margin-top:6px;font-variant-numeric:tabular-nums}
 
-    /* Final reveal — após 9ª barra */
-    .final-reveal{display:none;max-width:680px;margin:0 auto;padding-top:18px;border-top:2px solid #f3f3f3}
-    .final-reveal.is-shown{display:block;animation:fadeIn .5s ease}
+    .p-item{display:none;margin-bottom:14px;border-radius:14px;border:1.5px solid #e5e7eb;background:#fafafa;overflow:hidden}
+    .p-item.is-active{display:block;animation:slideDown .4s cubic-bezier(.16,1,.3,1) forwards}
+    .p-item.is-done{border-color:#bbf7d0;background:#f0fdf4}
 
-    /* Garantia */
-    .guarantee{padding:24px 18px;background:#fdf9f0;border:2px solid #f1d99a;border-radius:14px;margin-bottom:28px}
-    .guarantee h2{font-size:20px;font-weight:800;color:#1a1a1a;margin:0 0 14px;text-align:center}
-    .guarantee p{font-size:15px;color:#3a3a3a;margin-bottom:12px}
+    .p-inner{padding:14px 16px 16px}
+    .p-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px}
+    .p-icon{font-size:20px;flex-shrink:0;line-height:1.3;transition:all .4s}
+    .p-text{font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.45;flex:1}
+
+    /* bar track */
+    .bar-track{height:14px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+    .p-item.is-done .bar-track{background:#dcfce7}
+    .bar-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,#16a34a 0%,#22c55e 50%,#4ade80 100%);background-size:300% 100%;transition:none}
+    .bar-fill.animating{animation:shimmer 1.2s linear infinite}
+    .p-item.is-done .bar-fill{animation:none;background:#22c55e}
+
+    .bar-footer{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+    .bar-status{font-size:11px;font-weight:600;color:#6b7280}
+    .p-item.is-done .bar-status{color:#16a34a}
+    .bar-pct{font-size:13px;font-weight:800;color:#16a34a;font-variant-numeric:tabular-nums;min-width:38px;text-align:right}
+
+    /* ── Final reveal ── */
+    .final-reveal{display:none}
+    .final-reveal.is-shown{display:block;animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards}
+
+    /* ── Guarantee ── */
+    .guarantee{background:#fffbeb;border:2px solid #fde68a;border-radius:16px;padding:26px 22px;margin-bottom:26px}
+    .guarantee p{font-size:15px;color:#3a3a3a;margin-bottom:12px;line-height:1.7}
     .guarantee p:last-child{margin-bottom:0}
-    .guarantee strong{color:#1a1a1a}
+    .guarantee strong{color:#1a1a1a;font-weight:800}
 
-    /* Bullets */
-    .choice-bullets{margin:28px 0 12px;font-size:17px;font-weight:700}
-    .choice-bullets p{padding:14px 16px;border-radius:10px;margin-bottom:10px}
-    .choice-bullets .stuck{background:#fef2f2;color:#991b1b;border-left:4px solid #d32f2f}
-    .choice-bullets .act{background:#f0fdf4;color:#166534;border-left:4px solid #16a34a}
+    /* ── Choices ── */
+    .choices{margin:20px 0 24px}
+    .choice-item{display:flex;align-items:flex-start;gap:10px;padding:15px 16px;border-radius:12px;margin-bottom:10px;font-size:16px;font-weight:700;line-height:1.4}
+    .choice-bad{background:#fef2f2;color:#991b1b;border-left:4px solid #d32f2f}
+    .choice-good{background:#f0fdf4;color:#166534;border-left:4px solid #22c55e}
 
-    .lead-cta{font-size:16px;color:#3a3a3a;margin:18px 0;text-align:center}
+    .lead-cta{font-size:16px;color:#3a3a3a;text-align:center;margin:18px 0 14px;line-height:1.5}
 
-    /* CTA verde */
-    .btn-cart{display:block;max-width:480px;margin:18px auto;padding:18px 28px;background:linear-gradient(180deg,#22c55e,#16a34a);color:#fff;text-decoration:none;font-size:18px;font-weight:800;text-align:center;border-radius:12px;letter-spacing:.3px;box-shadow:0 6px 20px rgba(34,197,94,.4);transition:transform .2s,box-shadow .2s;text-transform:uppercase}
-    .btn-cart:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(34,197,94,.5)}
+    /* ── CTA button ── */
+    .btn-cart{display:block;max-width:500px;margin:0 auto 8px;padding:20px 24px;background:linear-gradient(180deg,#22c55e 0%,#16a34a 100%);color:#fff;font-size:18px;font-weight:900;text-align:center;border-radius:14px;text-transform:uppercase;letter-spacing:.4px;box-shadow:0 8px 28px rgba(34,197,94,.45);transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;animation:pulse 2.5s ease-in-out infinite}
+    .btn-cart:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(34,197,94,.55);animation:none}
+    .btn-cart:active{transform:translateY(0)}
+    .btn-secure{text-align:center;font-size:12px;color:#999;margin-bottom:30px}
 
-    /* Cadeaux — formato imagem */
-    .cadeaux-title{text-align:center;font-size:20px;font-weight:800;font-style:italic;margin:36px 0 22px;color:#1a1a1a;line-height:1.4}
-    .cadeaux-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:28px;max-width:680px;margin-left:auto;margin-right:auto}
-    .cadeau{position:relative;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.12);min-height:110px;display:flex;align-items:center;padding:22px 20px;gap:18px}
-    .cadeau-bg{position:absolute;inset:0;z-index:0}
-    .cadeau-inner{position:relative;z-index:1;display:flex;align-items:center;gap:18px;width:100%}
-    .cadeau-num{font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase;opacity:.7;display:block;margin-bottom:4px}
-    .cadeau-icon{font-size:44px;flex-shrink:0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
-    .cadeau-body{flex:1}
-    .cadeau-title-text{font-size:16px;font-weight:900;line-height:1.25;text-transform:uppercase;margin-bottom:5px}
-    .cadeau-scarcity{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(0,0,0,.2);letter-spacing:.3px}
-    .cadeau-price{font-size:12px;font-weight:700;margin-top:4px;opacity:.85}
+    /* ── Separator ── */
+    .sep{border:none;border-top:2px solid #f1f1f1;margin:32px 0}
 
-    /* Texto final */
-    .final-text{padding:20px 16px;background:#f9fafb;border-radius:12px;margin:24px 0}
-    .final-text p{font-size:15px;color:#3a3a3a;margin-bottom:12px}
+    /* ── Cadeaux ── */
+    .cadeaux-header{text-align:center;font-size:19px;font-weight:900;font-style:italic;color:#1a1a1a;line-height:1.4;margin:0 0 22px;padding:0 8px}
+
+    .cadeaux-grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:680px;margin:0 auto 32px}
+
+    .cadeau{border-radius:16px;overflow:hidden;display:flex;align-items:stretch;box-shadow:0 4px 20px rgba(0,0,0,.11);min-height:96px}
+    .cadeau-left{width:84px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:38px;background:rgba(0,0,0,.13)}
+    .cadeau-right{flex:1;padding:16px 16px 16px 14px;display:flex;flex-direction:column;justify-content:center;gap:5px}
+    .cadeau-num{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.7}
+    .cadeau-name{font-size:15px;font-weight:900;text-transform:uppercase;line-height:1.2}
+    .cadeau-badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;background:rgba(0,0,0,.18);width:fit-content}
+
+    /* ── Final text ── */
+    .final-text{background:#f9fafb;border-radius:14px;padding:22px 18px;margin:26px 0}
+    .final-text p{font-size:15px;color:#3a3a3a;margin-bottom:12px;line-height:1.7}
     .final-text p:last-child{margin-bottom:0}
-    .final-text .opt{padding:12px 14px;border-radius:8px;font-weight:600;margin-bottom:10px}
-    .final-text .opt-bad{background:#fef2f2;color:#991b1b}
-    .final-text .opt-good{background:#f0fdf4;color:#166534}
-    .final-text strong{color:#1a1a1a;font-weight:800}
+    .final-text strong{font-weight:800;color:#1a1a1a}
+    .opt{padding:13px 15px;border-radius:10px;font-weight:700;margin-bottom:10px}
+    .opt-bad{background:#fef2f2;color:#991b1b}
+    .opt-good{background:#f0fdf4;color:#166534}
 
-    /* Disclaimer */
-    .disclaimer{padding:24px 20px;text-align:center;border-top:1px solid #eee;background:#fafafa}
-    .disclaimer p{max-width:1100px;margin:0 auto;font-size:12px;color:#666;line-height:1.6}
+    /* ── Disclaimer ── */
+    .disclaimer{padding:22px 20px;text-align:center;border-top:1px solid #eee;background:#fafafa}
+    .disclaimer p{max-width:680px;margin:0 auto;font-size:12px;color:#888;line-height:1.6}
 
-    /* Footer */
-    .site-footer{background:#1a1a1a;color:#aaa;padding:28px 20px;text-align:center}
-    .site-footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-bottom:14px;font-size:13px}
-    .site-footer .links a{color:#aaa;text-decoration:none}
-    .site-footer .links a:hover{color:#fff;text-decoration:underline}
-    .site-footer .copy{font-size:12px;color:#666}
+    /* ── Footer ── */
+    .site-footer{background:#111;padding:28px 20px;text-align:center}
+    .site-footer .links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:12px;font-size:13px}
+    .site-footer .links a{color:#aaa}
+    .site-footer .links a:hover{color:#fff}
+    .site-footer .copy{font-size:12px;color:#555}
 
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    /* ── Keyframes ── */
+    @keyframes slideDown{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes shimmer{0%{background-position:300% 0}100%{background-position:-300% 0}}
+    @keyframes pulse{0%,100%{box-shadow:0 8px 28px rgba(34,197,94,.45)}50%{box-shadow:0 8px 36px rgba(34,197,94,.7)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
     @media(max-width:640px){
-      .video-section{padding:18px 12px}
-      .post-pitch{padding:8px 12px 30px}
-      .countdown-time{font-size:32px}
+      .brand-bar h1{font-size:16px}
+      .countdown-digits{font-size:38px}
       .old-price{font-size:24px}
-      .section-title{font-size:18px}
-      .progress-text{font-size:14px}
-      .guarantee{padding:18px 14px}
-      .guarantee h2{font-size:18px}
-      .btn-cart{font-size:16px;padding:16px 20px}
-      .cadeau{padding:14px 12px;gap:10px}
-      .cadeau-icon{font-size:28px;width:48px;height:48px}
-      .cadeau-text{font-size:14px}
-      .cadeaux-title{font-size:17px}
+      .section-title{font-size:17px}
+      .p-text{font-size:13px}
+      .btn-cart{font-size:15px;padding:18px 16px}
+      .cadeau-left{width:68px;font-size:30px}
+      .cadeau-name{font-size:13px}
+      .guarantee p{font-size:14px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Brand bar -->
   <div class="brand-bar">
     <h1>Les Secrets de la <span>Reconquête</span></h1>
   </div>
 
-  <!-- Video -->
   <div class="video-section">
     <div class="video-container">
       <vturb-smartplayer id="ab-PLACEHOLDER" style="display:block;margin:0 auto;width:100%"></vturb-smartplayer>
@@ -164,194 +182,275 @@
     </div>
   </div>
 
-  <!-- Pós-pitch (escondido até VTurb disparar CTA) -->
-  <section class="post-pitch" id="post-pitch" aria-hidden="true">
+  <!-- POST-PITCH — révélé quand VTurb affiche le bouton CTA -->
+  <section class="post-pitch" id="post-pitch">
+    <div class="container">
 
-    <!-- Cronômetro 15min -->
-    <div class="countdown">
-      <div class="countdown-label">⏰ Offre limitée</div>
-      <div class="countdown-time" id="countdown-time">15:00</div>
-    </div>
-
-    <!-- Old price -->
-    <div class="old-price">€200</div>
-
-    <!-- Title -->
-    <h2 class="section-title">Patiente, regarde la vidéo pendant qu'on crée ton Protocole de Reconquête Personnalisé...</h2>
-
-    <!-- Progress list — animadas sequencialmente -->
-    <div class="progress-list" id="progress-list">
-      <div class="progress-item">
-        <div class="progress-text">🔄 Génération du message exact qui perce n'importe quel blocage et réveille le manque même dans le silence</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Création du déclencheur caché qui la fait douter de sa décision de te quitter</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Génération du plan de rapprochement qui transforme sa culpabilité en force à ton avantage</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Création du scénario émotionnel qui transforme la froideur en curiosité et la curiosité en désir</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Génération du texte parfait pour inverser le mépris et la faire courir après ta réponse</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Création de l'effet domino qui détruit sa nouvelle relation et ramène l'attention sur toi</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Génération de la séquence interdite de messages qui rouvre la conversation sans avoir l'air collant</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Création du retournement psychologique qui change complètement sa façon de te voir</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-      <div class="progress-item">
-        <div class="progress-text">🔄 Génération du Protocole Personnalisé !</div>
-        <div class="progress-bar"><span></span></div>
-        <div class="progress-percent">0%</div>
-      </div>
-    </div>
-
-    <!-- Final reveal — após última progress bar -->
-    <div class="final-reveal" id="final-reveal">
-
-      <h2 class="section-title">En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois une GARANTIE BÉTON de 90 jours + 5 CADEAUX ! ⬇️</h2>
-
-      <div class="guarantee">
-        <p>Je sais exactement ce qui te passe par la tête là maintenant.</p>
-        <p>« Et si j'achète et qu'il se passe rien ? »</p>
-        <p>« Et si elle revient pas ? »</p>
-        <p>« Et si c'est juste une promesse vide de plus sur internet ? »</p>
-        <p>Et c'est exactement pour ça que j'ai décidé de faire un truc qu'aucun autre expert en relations amoureuses a le cran de faire : <strong>te donner une garantie de 90 jours</strong>, sans pièges et sans petits caractères.</p>
-        <p>Ça marche comme ça :</p>
-        <p><strong>Tu rejoins Les Secrets de la Reconquête aujourd'hui...</strong></p>
-        <p>Tu appliques ce que je t'enseigne, t'envoies les messages, tu suis le protocole étape par étape...</p>
-        <p>Et si dans les 90 jours ton ex revient pas vers toi, je te rembourse chaque centime de ton investissement.</p>
-        <p>Sans questions, sans paperasse, sans petits caractères. Si ça marche pas pour toi, tu paies rien. Aussi simple que ça.</p>
-        <p>Je fais ça parce que je sais ce que ma méthode vaut. Et parce que j'ai déjà vu cette même méthode transformer des hommes brisés en mecs qui ont reconquis le respect, le désir et l'amour de la femme qu'ils aimaient le plus.</p>
-        <p>Donc, t'investis pas dans « un cours de plus ». <strong>Tu investis dans une seconde chance de réécrire l'histoire de ta vie amoureuse.</strong></p>
+      <!-- Countdown 15 min -->
+      <div class="countdown-wrap">
+        <div class="countdown-box">
+          <div class="countdown-label">⏰ Cette offre expire dans</div>
+          <div class="countdown-digits" id="countdown-time">15:00</div>
+        </div>
       </div>
 
-      <div class="choice-bullets">
-        <p class="stuck">💔 Rester coincé dans les 12 % et la perdre pour toujours.</p>
-        <p class="act">❤️ Ou agir maintenant et utiliser le même protocole qui a déjà reconnecté plus de 30 000 couples.</p>
-      </div>
+      <!-- Prix barré -->
+      <div class="old-price">€200</div>
 
-      <p class="lead-cta">Clique ici et sécurise ton accès aux Secrets de la Reconquête avec <strong>90 jours de garantie</strong> 👇🏻</p>
+      <!-- Titre -->
+      <h2 class="section-title">Patiente, regarde la vidéo pendant qu'on crée ton Protocole de Reconquête Personnalisé...</h2>
 
-      <a class="btn-cart" href="#" id="cta-1">Clique ici pour RECONQUÉRIR ton ex !</a>
+      <!-- Barres de progression -->
+      <div class="progress-list" id="progress-list">
 
-      <div class="cadeaux-title"><em>En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois 6 CADEAUX ! ⬇️</em></div>
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Génération du message exact qui perce n'importe quel blocage et réveille le manque même dans le silence</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
 
-      <div class="cadeaux-grid">
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#0891b2 0%,#06b6d4 50%,#22d3ee 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">🏝️</div>
-            <div class="cadeau-body">
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Création du déclencheur caché qui la fait douter de sa décision de te quitter</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Génération du plan de rapprochement qui transforme sa culpabilité en force à ton avantage</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Création du scénario émotionnel qui transforme la froideur en curiosité et la curiosité en désir</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Génération du texte parfait pour inverser le mépris et la faire courir après ta réponse</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Création de l'effet domino qui détruit sa nouvelle relation et ramène l'attention sur toi</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Génération de la séquence interdite de messages qui rouvre la conversation sans avoir l'air collant</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">Création du retournement psychologique qui change complètement sa façon de te voir</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-item">
+          <div class="p-inner">
+            <div class="p-header">
+              <span class="p-icon">🔄</span>
+              <span class="p-text">🔥 Génération du Protocole Personnalisé !</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <div class="bar-footer">
+              <span class="bar-status">En cours...</span>
+              <span class="bar-pct">0%</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /progress-list -->
+
+      <!-- Révélation finale après toutes les barres -->
+      <div class="final-reveal" id="final-reveal">
+
+        <h2 class="section-title">En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois une GARANTIE BÉTON de 90 jours + 5 CADEAUX ! ⬇️</h2>
+
+        <div class="guarantee">
+          <p>Je sais exactement ce qui te passe par la tête là maintenant.</p>
+          <p>« Et si j'achète et qu'il se passe rien ? »<br>« Et si elle revient pas ? »<br>« Et si c'est juste une promesse vide de plus sur internet ? »</p>
+          <p>Et c'est exactement pour ça que j'ai décidé de faire un truc qu'aucun autre expert en relations amoureuses a le cran de faire : <strong>te donner une garantie de 90 jours</strong>, sans pièges et sans petits caractères.</p>
+          <p>Ça marche comme ça :<br><strong>Tu rejoins Les Secrets de la Reconquête aujourd'hui...</strong></p>
+          <p>Tu appliques ce que je t'enseigne, t'envoies les messages, tu suis le protocole étape par étape...</p>
+          <p>Et si dans les 90 jours ton ex revient pas vers toi, <strong>je te rembourse chaque centime de ton investissement.</strong></p>
+          <p>Sans questions, sans paperasse, sans petits caractères. Si ça marche pas pour toi, tu paies rien. Aussi simple que ça.</p>
+          <p>Je fais ça parce que je sais ce que ma méthode vaut. Et parce que j'ai déjà vu cette même méthode transformer des hommes brisés en mecs qui ont reconquis le respect, le désir et l'amour de la femme qu'ils aimaient le plus.</p>
+          <p>Donc, t'investis pas dans « un cours de plus ». <strong>Tu investis dans une seconde chance de réécrire l'histoire de ta vie amoureuse.</strong></p>
+          <p>Et j'ai tellement confiance en cette méthode que je mets mon nom et ma réputation en jeu pour le prouver.</p>
+          <p>Maintenant, c'est à toi de jouer.</p>
+          <p>Tu peux continuer à scroller, en faisant semblant que tu vas y réfléchir encore un peu...<br>Ou tu peux cliquer sur le bouton ci-dessous et commencer maintenant le processus qui va ramener ton ex dans ta vie.</p>
+          <p>Le choix est simple :</p>
+        </div>
+
+        <div class="choices">
+          <div class="choice-item choice-bad">💔 Rester coincé dans les 12 % et la perdre pour toujours.</div>
+          <div class="choice-item choice-good">❤️ Ou agir maintenant et utiliser le même protocole qui a déjà reconnecté plus de 30 000 couples.</div>
+        </div>
+
+        <p class="lead-cta">Clique ici et sécurise ton accès aux Secrets de la Reconquête avec <strong>90 jours de garantie</strong> 👇🏻</p>
+
+        <a class="btn-cart" href="#" id="cta-1">Clique ici pour RECONQUÉRIR ton ex !</a>
+        <p class="btn-secure">🔒 Paiement sécurisé · Accès immédiat · Garantie 90 jours</p>
+
+        <hr class="sep">
+
+        <!-- CADEAUX -->
+        <p class="cadeaux-header">En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE<br>tu reçois <span>6 CADEAUX</span> ! ⬇️</p>
+
+        <div class="cadeaux-grid">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#0891b2,#0e7490)">🏝️</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#0891b2 0%,#06b6d4 100%)">
               <span class="cadeau-num">Cadeau #1</span>
-              <div class="cadeau-title-text">Voyage en couple aux Maldives</div>
-              <span class="cadeau-scarcity">⚡ Uniquement pour les 10 premiers</span>
+              <div class="cadeau-name">Voyage en couple aux Maldives</div>
+              <span class="cadeau-badge">⚡ Uniquement pour les 10 premiers</span>
             </div>
           </div>
-        </div>
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#1e40af 0%,#3b82f6 50%,#60a5fa 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">🏔️</div>
-            <div class="cadeau-body">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#1e40af,#1d4ed8)">🏔️</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#1e40af 0%,#3b82f6 100%)">
               <span class="cadeau-num">Cadeau #2</span>
-              <div class="cadeau-title-text">Voyage en couple dans les Alpes Suisses</div>
-              <span class="cadeau-scarcity">⚡ Uniquement pour les 20 premiers</span>
+              <div class="cadeau-name">Voyage en couple dans les Alpes Suisses</div>
+              <span class="cadeau-badge">⚡ Uniquement pour les 20 premiers</span>
             </div>
           </div>
-        </div>
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#b45309 0%,#d97706 50%,#f59e0b 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">📞</div>
-            <div class="cadeau-body">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#b45309,#d97706)">📞</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#b45309 0%,#f59e0b 100%)">
               <span class="cadeau-num">Cadeau #3</span>
-              <div class="cadeau-title-text">Consultation individuelle avec moi en visio</div>
-              <span class="cadeau-scarcity">⚡ Uniquement pour les 30 premiers</span>
+              <div class="cadeau-name">Consultation individuelle avec moi en visio</div>
+              <span class="cadeau-badge">⚡ Uniquement pour les 30 premiers</span>
             </div>
           </div>
-        </div>
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#6d28d9 0%,#7c3aed 50%,#a78bfa 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">🛡️</div>
-            <div class="cadeau-body">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#6d28d9,#7c3aed)">🛡️</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#6d28d9 0%,#a78bfa 100%)">
               <span class="cadeau-num">Cadeau #4</span>
-              <div class="cadeau-title-text">Bouclier Émotionnel</div>
-              <span class="cadeau-price">Valeur : 147 € — aujourd'hui gratuit</span>
+              <div class="cadeau-name">Bouclier Émotionnel</div>
+              <span class="cadeau-badge">Valeur 147 € — aujourd'hui gratuit</span>
             </div>
           </div>
-        </div>
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#065f46 0%,#059669 50%,#34d399 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">💬</div>
-            <div class="cadeau-body">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#065f46,#059669)">💬</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#065f46 0%,#34d399 100%)">
               <span class="cadeau-num">Cadeau #5</span>
-              <div class="cadeau-title-text">Banque de Messages Magnétiques</div>
-              <span class="cadeau-price">Valeur : 97 € — aujourd'hui gratuit</span>
+              <div class="cadeau-name">Banque de Messages Magnétiques</div>
+              <span class="cadeau-badge">Valeur 97 € — aujourd'hui gratuit</span>
             </div>
           </div>
-        </div>
-        <div class="cadeau" style="color:#fff">
-          <div class="cadeau-bg" style="background:linear-gradient(135deg,#9f1239 0%,#e11d48 50%,#fb7185 100%)"></div>
-          <div class="cadeau-inner">
-            <div class="cadeau-icon">🤝</div>
-            <div class="cadeau-body">
+
+          <div class="cadeau" style="color:#fff">
+            <div class="cadeau-left" style="background:linear-gradient(180deg,#9f1239,#e11d48)">🤝</div>
+            <div class="cadeau-right" style="background:linear-gradient(135deg,#9f1239 0%,#fb7185 100%)">
               <span class="cadeau-num">Cadeau #6</span>
-              <div class="cadeau-title-text">Guide du Premier Face-à-Face</div>
-              <span class="cadeau-price">Valeur : 127 € — aujourd'hui gratuit</span>
+              <div class="cadeau-name">Guide du Premier Face-à-Face</div>
+              <span class="cadeau-badge">Valeur 127 € — aujourd'hui gratuit</span>
             </div>
           </div>
+
+        </div><!-- /cadeaux-grid -->
+
+        <a class="btn-cart" href="#" id="cta-2">Clique ici pour RECONQUÉRIR ton ex !</a>
+        <p class="btn-secure">🔒 Paiement sécurisé · Accès immédiat · Garantie 90 jours</p>
+
+        <div class="final-text">
+          <p>Et écoute... t'es pas ici par hasard.</p>
+          <p>T'es ici parce que tu sais que ton ex te voit plus comme avant.</p>
+          <p>Et maintenant t'as plus que deux options :</p>
+          <p class="opt opt-bad">❌ Continuer à envoyer des messages au hasard, et la regarder courir dans les bras d'un autre.</p>
+          <p class="opt opt-good">✅ Ou appliquer les messages chirurgicaux du protocole, ceux qui la font vouloir s'engager à nouveau.</p>
+          <p>Les Secrets de la Reconquête te livrent exactement :</p>
+          <p><strong>👉 Quoi dire, quand le dire, et comment garder son esprit accro à toi.</strong></p>
+          <p>Clique sur le bouton ci-dessous. Débloque ton accès maintenant. Et reprends ta place — au centre de ses pensées.</p>
         </div>
-      </div>
 
-      <a class="btn-cart" href="#" id="cta-2">Clique ici pour RECONQUÉRIR ton ex !</a>
+        <a class="btn-cart" href="#" id="cta-3">Clique ici pour RECONQUÉRIR ton ex !</a>
+        <p class="btn-secure" style="margin-bottom:40px">🔒 Paiement sécurisé · Accès immédiat · Garantie 90 jours</p>
 
-      <div class="final-text">
-        <p>Et écoute... t'es pas ici par hasard.</p>
-        <p>T'es ici parce que tu sais que ton ex te voit plus comme avant.</p>
-        <p>Et maintenant t'as plus que deux options :</p>
-        <p class="opt opt-bad">❌ Continuer à envoyer des messages au hasard, et la regarder courir dans les bras d'un autre.</p>
-        <p class="opt opt-good">✅ Ou appliquer les messages chirurgicaux du protocole, ceux qui la font vouloir s'engager à nouveau.</p>
-        <p>Les Secrets de la Reconquête te livrent exactement :</p>
-        <p><strong>👉 Quoi dire, quand le dire, et comment garder son esprit accro à toi.</strong></p>
-        <p>Clique sur le bouton ci-dessous. Débloque ton accès maintenant. Et reprends ta place — au centre de ses pensées.</p>
-      </div>
+      </div><!-- /final-reveal -->
 
-      <a class="btn-cart" href="#" id="cta-3">Clique ici pour RECONQUÉRIR ton ex !</a>
-
-    </div>
+    </div><!-- /container -->
   </section>
 
-  <!-- Disclaimer -->
   <div class="disclaimer">
     <p>This site is not affiliated with, endorsed by, or sponsored by Facebook or Google. Facebook and Google are registered trademarks of their respective owners. All testimonials are from real people, but results may vary.</p>
   </div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="links">
       <a href="/privacy-policy/">Politique de confidentialité</a>
@@ -363,109 +462,124 @@
     <div class="copy">&copy; 2026 Les Secrets de la Reconquête. Tous droits réservés.</div>
   </footer>
 
-  <!-- Pre/Post-pitch reveal logic -->
   <script>
   (function(){
     var revealed = false;
-    var PITCH_FALLBACK_MS = 30 * 60 * 1000; // 30min — TODO ajustar quando souber tempo do pitch
+    var FALLBACK_MS = 30 * 60 * 1000;
 
-    var postPitch = document.getElementById('post-pitch');
+    var postPitch   = document.getElementById('post-pitch');
     var finalReveal = document.getElementById('final-reveal');
-    var progressItems = document.querySelectorAll('.progress-item');
+    var items       = Array.from(document.querySelectorAll('.p-item'));
     var countdownEl = document.getElementById('countdown-time');
 
-    // Cronômetro 15min — começa quando reveal dispara
-    function startCountdown(totalSec){
-      var sec = totalSec;
-      function tick(){
-        var m = Math.floor(sec/60);
-        var s = sec%60;
-        countdownEl.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-        if(sec<=0) return;
-        sec--;
-        setTimeout(tick, 1000);
-      }
-      tick();
+    /* ── Countdown 15 min ── */
+    function startCountdown(){
+      var remaining = 15 * 60;
+      (function tick(){
+        var m = Math.floor(remaining / 60);
+        var s = remaining % 60;
+        countdownEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+        if (remaining > 0){ remaining--; setTimeout(tick, 1000); }
+      })();
     }
 
-    // Anima progress bars sequencialmente — cada uma 5s, depois revela próxima
-    function startProgressBars(){
-      var i = 0;
-      function next(){
-        if(i >= progressItems.length){
+    /* ── Progress bars — smooth RAF animation ── */
+    var ITEM_DURATION = 5000; // ms per bar
+    var PAUSE_AFTER   = 500;  // ms between bars
+
+    function animateItem(index){
+      if (index >= items.length){
+        // all done — show final content
+        setTimeout(function(){
           finalReveal.classList.add('is-shown');
-          return;
-        }
-        var item = progressItems[i];
-        item.classList.add('is-active');
-        var bar = item.querySelector('.progress-bar span');
-        var pct = item.querySelector('.progress-percent');
-        // Forçar reflow antes da transição
-        requestAnimationFrame(function(){
-          bar.style.width = '100%';
-        });
-        // Animar texto do percent
-        var startTime = Date.now();
-        var DURATION = 4500;
-        function animatePct(){
-          var elapsed = Date.now() - startTime;
-          var p = Math.min(100, Math.round(elapsed/DURATION*100));
-          pct.textContent = p + '%';
-          if(p < 100){
-            requestAnimationFrame(animatePct);
-          } else {
-            i++;
-            setTimeout(next, 350);
-          }
-        }
-        animatePct();
+          finalReveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+        return;
       }
-      next();
+
+      var item    = items[index];
+      var fill    = item.querySelector('.bar-fill');
+      var pctEl   = item.querySelector('.bar-pct');
+      var statusEl= item.querySelector('.bar-status');
+      var iconEl  = item.querySelector('.p-icon');
+
+      // show item
+      item.classList.add('is-active');
+
+      // start animation on next frame to ensure layout
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          fill.classList.add('animating');
+
+          var start = null;
+          function step(ts){
+            if (!start) start = ts;
+            var elapsed = ts - start;
+            var progress = Math.min(elapsed / ITEM_DURATION, 1);
+            // ease-out quad
+            var eased = 1 - (1 - progress) * (1 - progress);
+            var pct = Math.round(eased * 100);
+
+            fill.style.width = pct + '%';
+            pctEl.textContent = pct + '%';
+
+            if (progress < 1){
+              requestAnimationFrame(step);
+            } else {
+              // complete
+              fill.style.width = '100%';
+              pctEl.textContent = '100%';
+              fill.classList.remove('animating');
+              item.classList.add('is-done');
+              iconEl.textContent = '✅';
+              statusEl.textContent = 'Terminé !';
+              setTimeout(function(){ animateItem(index + 1); }, PAUSE_AFTER);
+            }
+          }
+          requestAnimationFrame(step);
+        });
+      });
     }
 
+    /* ── Reveal trigger ── */
     function reveal(){
-      if(revealed) return;
+      if (revealed) return;
       revealed = true;
       postPitch.classList.add('is-revealed');
-      postPitch.setAttribute('aria-hidden','false');
-      startCountdown(15*60);
-      startProgressBars();
+      startCountdown();
+      // slight delay so reveal animation plays first
+      setTimeout(function(){ animateItem(0); }, 600);
     }
 
-    // Mecanismo 1: setTimeout fallback
-    setTimeout(reveal, PITCH_FALLBACK_MS);
+    // Fallback timer
+    setTimeout(reveal, FALLBACK_MS);
 
-    // Mecanismo 2: VTurb event listener (vários nomes possíveis)
-    ['vturb:cta','vturb:offer','vturb:button','vturb:reveal','smartplayer:cta','smartplayer:button','sp:cta','sp:button'].forEach(function(ev){
-      window.addEventListener(ev, reveal, {once:true});
-    });
+    // VTurb events
+    ['vturb:cta','vturb:offer','vturb:button','vturb:reveal',
+     'smartplayer:cta','smartplayer:button','sp:cta','sp:button'
+    ].forEach(function(ev){ window.addEventListener(ev, reveal, { once: true }); });
 
-    // Mecanismo 3: MutationObserver no shadow DOM (procura botão CTA do VTurb)
+    // Shadow DOM observer
     function observeShadow(){
       var player = document.querySelector('vturb-smartplayer');
-      if(!player || !player.shadowRoot) return false;
-      var obs = new MutationObserver(function(){
-        var btn = player.shadowRoot.querySelector('[class*="cta"],[class*="button"],[class*="offer"]');
-        if(btn) reveal();
-      });
-      obs.observe(player.shadowRoot, {childList:true, subtree:true});
+      if (!player || !player.shadowRoot) return false;
+      new MutationObserver(function(){
+        if (player.shadowRoot.querySelector('[class*="cta"],[class*="button"],[class*="offer"]')) reveal();
+      }).observe(player.shadowRoot, { childList: true, subtree: true });
       return true;
     }
-    var shadowTries = 0;
-    var shadowInt = setInterval(function(){
-      if(observeShadow() || ++shadowTries > 60) clearInterval(shadowInt);
+    var tries = 0, si = setInterval(function(){
+      if (observeShadow() || ++tries > 60) clearInterval(si);
     }, 500);
 
-    // Mecanismo 4: polling DOM por classes/ids comuns
-    var domTries = 0;
-    var domInt = setInterval(function(){
-      if(revealed){ clearInterval(domInt); return; }
-      var hit = document.querySelector('.smartplayer-button-wrapper,.sp-button-cta,[class*="offer-button"]');
-      if(hit) reveal();
-      if(++domTries > 1200) clearInterval(domInt); // ~30min
+    // DOM polling
+    var dp = 0, di = setInterval(function(){
+      if (revealed){ clearInterval(di); return; }
+      if (document.querySelector('.smartplayer-button-wrapper,.sp-button-cta,[class*="offer-button"]')) reveal();
+      if (++dp > 1200) clearInterval(di);
     }, 1500);
 
-    // Manual trigger pra testar:  window.dispatchEvent(new Event('vturb:cta'))
+    // Dev test: window.dispatchEvent(new Event('vturb:cta'))
   })();
   </script>
 
