@@ -56,6 +56,8 @@
     /* ── At-pitch (so aparece quando VTurb dispara) ── */
     .at-pitch{display:none}
     .at-pitch.is-revealed{display:block;animation:fadeUp .55s ease}
+    .at-pitch-top{padding:14px 0 4px}
+    .at-pitch-top.is-revealed{padding:14px 0 4px}
 
     /* ── Protocol ready (depois das barras) ── */
     .protocol-ready{display:none;max-width:520px;margin:8px auto 24px;text-align:center;padding:18px 22px;border-radius:14px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #86efac}
@@ -190,6 +192,19 @@
       <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/00c3b583-8874-4e64-a32e-65f6dd9ba521/ab-test/PLACEHOLDER/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
   </div>
+
+  <!-- AT-PITCH HEADER — cronometro + €200 (entre video e headline) -->
+  <section class="at-pitch at-pitch-top" id="at-pitch-top">
+    <div class="container">
+      <div class="countdown-wrap" style="padding:0">
+        <div class="countdown-box">
+          <div class="countdown-label">⏰ Cette offre expire dans</div>
+          <div class="countdown-digits" id="countdown-time">15:00</div>
+        </div>
+      </div>
+      <div class="old-price">€200</div>
+    </div>
+  </section>
 
   <!-- WHILE-WATCHING — sempre visivel (durante o VSL) -->
   <section class="while-watching" id="while-watching">
@@ -338,20 +353,9 @@
     </div><!-- /container while-watching -->
   </section><!-- /while-watching -->
 
-  <!-- AT-PITCH — so aparece quando VTurb dispara o botao -->
-  <section class="at-pitch" id="at-pitch">
+  <!-- AT-PITCH BOTTOM — garantia, cadeaux, CTAs (depois das barras) -->
+  <section class="at-pitch at-pitch-bottom" id="at-pitch-bottom">
     <div class="container">
-
-      <!-- Countdown 15 min -->
-      <div class="countdown-wrap" style="padding:0">
-        <div class="countdown-box">
-          <div class="countdown-label">⏰ Cette offre expire dans</div>
-          <div class="countdown-digits" id="countdown-time">15:00</div>
-        </div>
-      </div>
-
-      <!-- Prix barré -->
-      <div class="old-price">€200</div>
 
       <div class="final-reveal is-shown" id="final-reveal">
 
@@ -488,10 +492,11 @@
     var revealed = false;
     var FALLBACK_MS = 30 * 60 * 1000;
 
-    var atPitch     = document.getElementById('at-pitch');
-    var protoReady  = document.getElementById('protocol-ready');
-    var items       = Array.from(document.querySelectorAll('.p-item'));
-    var countdownEl = document.getElementById('countdown-time');
+    var atPitchTop    = document.getElementById('at-pitch-top');
+    var atPitchBottom = document.getElementById('at-pitch-bottom');
+    var protoReady    = document.getElementById('protocol-ready');
+    var items         = Array.from(document.querySelectorAll('.p-item'));
+    var countdownEl   = document.getElementById('countdown-time');
 
     /* ── Countdown 15 min ── */
     function startCountdown(){
@@ -565,11 +570,12 @@
     function reveal(){
       if (revealed) return;
       revealed = true;
-      atPitch.classList.add('is-revealed');
+      atPitchTop.classList.add('is-revealed');
+      atPitchBottom.classList.add('is-revealed');
       startCountdown();
-      // scroll suave ate o cronometro
+      // scroll suave ate o cronometro (entre video e barras)
       setTimeout(function(){
-        atPitch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        atPitchTop.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 400);
     }
 
