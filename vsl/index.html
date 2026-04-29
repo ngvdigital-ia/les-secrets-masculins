@@ -510,9 +510,10 @@
     }
 
     /* ── Progress bars — smooth RAF animation ── */
-    /* 9 bars × 18s = 162s (~2.7 min) — roda durante o VSL */
-    var ITEM_DURATION = 18000; // ms por barra
-    var PAUSE_AFTER   = 600;   // ms entre barras
+    /* 9 bars × 180s = 27 min total — roda durante todo o VSL ate o pitch */
+    /* TODO: ajustar quando souber tempo exato do pitch (apos edicao da Camile) */
+    var ITEM_DURATION = 180000; // ms por barra (3 min cada)
+    var PAUSE_AFTER   = 800;    // ms entre barras
 
     function animateItem(index){
       if (index >= items.length){
