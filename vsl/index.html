@@ -50,9 +50,18 @@
     .video-container{width:100%;max-width:720px}
     .video-container vturb-smartplayer{display:block;margin:0 auto;width:100%}
 
-    /* ── Post-pitch ── */
-    .post-pitch{display:none}
-    .post-pitch.is-revealed{display:block;animation:fadeUp .5s ease}
+    /* ── While-watching (sempre visivel) ── */
+    .while-watching{display:block;padding-top:12px}
+
+    /* ── At-pitch (so aparece quando VTurb dispara) ── */
+    .at-pitch{display:none}
+    .at-pitch.is-revealed{display:block;animation:fadeUp .55s ease}
+
+    /* ── Protocol ready (depois das barras) ── */
+    .protocol-ready{display:none;max-width:520px;margin:8px auto 24px;text-align:center;padding:18px 22px;border-radius:14px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:2px solid #86efac}
+    .protocol-ready.is-shown{display:block;animation:fadeUp .5s ease}
+    .protocol-ready-title{font-size:16px;font-weight:900;color:#14532d;margin-bottom:4px}
+    .protocol-ready-sub{font-size:13px;color:#166534;font-weight:600}
 
     /* ── Countdown ── */
     .countdown-wrap{padding:0 16px;margin-bottom:14px}
@@ -182,20 +191,9 @@
     </div>
   </div>
 
-  <!-- POST-PITCH — révélé quand VTurb affiche le bouton CTA -->
-  <section class="post-pitch" id="post-pitch">
+  <!-- WHILE-WATCHING — sempre visivel (durante o VSL) -->
+  <section class="while-watching" id="while-watching">
     <div class="container">
-
-      <!-- Countdown 15 min -->
-      <div class="countdown-wrap">
-        <div class="countdown-box">
-          <div class="countdown-label">⏰ Cette offre expire dans</div>
-          <div class="countdown-digits" id="countdown-time">15:00</div>
-        </div>
-      </div>
-
-      <!-- Prix barré -->
-      <div class="old-price">€200</div>
 
       <!-- Titre -->
       <h2 class="section-title">Patiente, regarde la vidéo pendant qu'on crée ton Protocole de Reconquête Personnalisé...</h2>
@@ -331,8 +329,31 @@
 
       </div><!-- /progress-list -->
 
-      <!-- Révélation finale après toutes les barres -->
-      <div class="final-reveal" id="final-reveal">
+      <!-- Estado intermediario: depois das 9 barras, antes do pitch -->
+      <div class="protocol-ready" id="protocol-ready">
+        <div class="protocol-ready-title">✅ Ton Protocole de Reconquête est prêt !</div>
+        <div class="protocol-ready-sub">Continue de regarder la vidéo pour débloquer ton accès complet...</div>
+      </div>
+
+    </div><!-- /container while-watching -->
+  </section><!-- /while-watching -->
+
+  <!-- AT-PITCH — so aparece quando VTurb dispara o botao -->
+  <section class="at-pitch" id="at-pitch">
+    <div class="container">
+
+      <!-- Countdown 15 min -->
+      <div class="countdown-wrap" style="padding:0">
+        <div class="countdown-box">
+          <div class="countdown-label">⏰ Cette offre expire dans</div>
+          <div class="countdown-digits" id="countdown-time">15:00</div>
+        </div>
+      </div>
+
+      <!-- Prix barré -->
+      <div class="old-price">€200</div>
+
+      <div class="final-reveal is-shown" id="final-reveal">
 
         <h2 class="section-title">En sécurisant ton accès aux SECRETS DE LA RECONQUÊTE tu reçois une GARANTIE BÉTON de 90 jours + 5 CADEAUX ! ⬇️</h2>
 
@@ -467,8 +488,8 @@
     var revealed = false;
     var FALLBACK_MS = 30 * 60 * 1000;
 
-    var postPitch   = document.getElementById('post-pitch');
-    var finalReveal = document.getElementById('final-reveal');
+    var atPitch     = document.getElementById('at-pitch');
+    var protoReady  = document.getElementById('protocol-ready');
     var items       = Array.from(document.querySelectorAll('.p-item'));
     var countdownEl = document.getElementById('countdown-time');
 
@@ -484,15 +505,15 @@
     }
 
     /* ── Progress bars — smooth RAF animation ── */
-    var ITEM_DURATION = 5000; // ms per bar
-    var PAUSE_AFTER   = 500;  // ms between bars
+    /* 9 bars × 18s = 162s (~2.7 min) — roda durante o VSL */
+    var ITEM_DURATION = 18000; // ms por barra
+    var PAUSE_AFTER   = 600;   // ms entre barras
 
     function animateItem(index){
       if (index >= items.length){
-        // all done — show final content
+        // todas completas — mostra "Protocole pret"
         setTimeout(function(){
-          finalReveal.classList.add('is-shown');
-          finalReveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          protoReady.classList.add('is-shown');
         }, 300);
         return;
       }
@@ -503,10 +524,8 @@
       var statusEl= item.querySelector('.bar-status');
       var iconEl  = item.querySelector('.p-icon');
 
-      // show item
       item.classList.add('is-active');
 
-      // start animation on next frame to ensure layout
       requestAnimationFrame(function(){
         requestAnimationFrame(function(){
           fill.classList.add('animating');
@@ -516,7 +535,6 @@
             if (!start) start = ts;
             var elapsed = ts - start;
             var progress = Math.min(elapsed / ITEM_DURATION, 1);
-            // ease-out quad
             var eased = 1 - (1 - progress) * (1 - progress);
             var pct = Math.round(eased * 100);
 
@@ -526,7 +544,6 @@
             if (progress < 1){
               requestAnimationFrame(step);
             } else {
-              // complete
               fill.style.width = '100%';
               pctEl.textContent = '100%';
               fill.classList.remove('animating');
@@ -541,14 +558,19 @@
       });
     }
 
-    /* ── Reveal trigger ── */
+    /* ── Inicia barras IMEDIATAMENTE quando a pagina carrega ── */
+    setTimeout(function(){ animateItem(0); }, 800);
+
+    /* ── Reveal trigger (pitch / VTurb CTA) ── */
     function reveal(){
       if (revealed) return;
       revealed = true;
-      postPitch.classList.add('is-revealed');
+      atPitch.classList.add('is-revealed');
       startCountdown();
-      // slight delay so reveal animation plays first
-      setTimeout(function(){ animateItem(0); }, 600);
+      // scroll suave ate o cronometro
+      setTimeout(function(){
+        atPitch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 400);
     }
 
     // Fallback timer
