@@ -564,8 +564,31 @@
       });
     }
 
-    /* ── Inicia barras IMEDIATAMENTE quando a pagina carrega ── */
-    setTimeout(function(){ animateItem(0); }, 800);
+    /* ── Modo preview (?preview=1 ou ?preview=pitch) ── */
+    /* Usado pelo time pra ver como vai ficar quando o pitch disparar, sem esperar */
+    var qs = new URLSearchParams(window.location.search);
+    var previewMode = qs.get('preview');
+
+    if (previewMode){
+      // Completa todas as barras imediatamente
+      items.forEach(function(item){
+        var fill = item.querySelector('.bar-fill');
+        var pctEl = item.querySelector('.bar-pct');
+        var statusEl = item.querySelector('.bar-status');
+        var iconEl = item.querySelector('.p-icon');
+        item.classList.add('is-active','is-done');
+        fill.style.width = '100%';
+        pctEl.textContent = '100%';
+        statusEl.textContent = 'Terminé !';
+        iconEl.textContent = '✅';
+      });
+      protoReady.classList.add('is-shown');
+      // Dispara o pitch (cronometro + €200 + garantia + cadeaux + CTAs)
+      setTimeout(function(){ reveal(); }, 200);
+    } else {
+      /* ── Inicia barras IMEDIATAMENTE quando a pagina carrega ── */
+      setTimeout(function(){ animateItem(0); }, 800);
+    }
 
     /* ── Reveal trigger (pitch / VTurb CTA) ── */
     function reveal(){
