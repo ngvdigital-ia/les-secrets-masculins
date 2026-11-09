@@ -7,19 +7,8 @@
   <meta name="description" content="Découvre comment faire en sorte que ton ex revienne vers toi en 60 secondes — même si elle est avec un autre mec. Test psychologique gratuit.">
 
   <!-- Meta Pixel — Fischer (task 86ah4gq5p) -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1468933641577961');
-  fbq('track', 'PageView');
-  </script>
-  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1468933641577961&ev=PageView&noscript=1"/></noscript>
+  
+  
 
   <link rel="dns-prefetch" href="https://cdn.utmify.com.br">
   <link rel="dns-prefetch" href="https://connect.facebook.net">
@@ -267,11 +256,11 @@
       bar.style.width = ((current+1)/steps.length*100) + '%';
       window.scrollTo({top:0, behavior:'smooth'});
       // Track event Meta Pixel
-      if(window.fbq){ fbq('trackCustom', 'QuizStep', {step: current+1}); }
+      
     }
     window.next = function(){ if(current < steps.length-1) show(current+1); };
     window.finish = function(){
-      if(window.fbq){ fbq('trackCustom', 'QuizComplete'); }
+      
       window.location.href = '/vsl/';
     };
   })();
